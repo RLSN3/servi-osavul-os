@@ -155,11 +155,11 @@ em{font-style:normal;color:var(--mut)}
 /* como funciona */
 .h2{font-size:clamp(36px,5.4vw,80px);max-width:12em;margin-top:18px}
 .how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,100px);margin-top:clamp(28px,5vh,52px);align-items:start}
-.steps{display:flex;flex-direction:column;border-top:1px solid var(--fg)}
+.steps{display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 16px;padding:20px 0;border-bottom:1px solid var(--line)}
 .step b{grid-row:span 2;font-size:34px;font-weight:500;line-height:1;color:var(--mut);letter-spacing:-.04em}
 .step h3{font-size:24px}.step p{color:var(--mut);font-size:15px}
-.faq{border-top:1px solid var(--fg)}
+.faq{border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font-size:18px;font-weight:500}
 .faq summary::-webkit-details-marker{display:none}
@@ -335,7 +335,7 @@ em{font-style:normal;color:var(--mut)}
 .step b,.step::after{transition:transform .3s,color .3s,box-shadow .3s}
 .step b{transform-origin:left bottom}
 .step::after{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--fg);box-shadow:0 0 0 0 var(--spot)}
-.step+.step::after{left:32px}
+.step::after{left:32px}
 .contact-line .ic{display:inline-block;transition:transform .3s}
 @media(hover:hover) and (pointer:fine){
   .fxc{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px)) scale(var(--sc,1))}
@@ -355,6 +355,11 @@ em{font-style:normal;color:var(--mut)}
   .fxc,.fxc.hot{transform:none!important}
   .btn::after,.slide::before{display:none}
 }
+.swap{animation:swp .35s cubic-bezier(.2,.7,.2,1)}@keyframes swp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(hover:hover) and (min-width:720px){.row{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s,background .25s}.row:hover{transform:translateX(6px);box-shadow:0 10px 28px -12px rgba(0,0,0,.35);border-color:var(--fg)}.row.foc:hover{transform:translateX(8px)}}
+@media(prefers-reduced-motion:reduce){.swap{animation:none}.row:hover{transform:none!important}}
+@media(max-width:719px){.row{transition:transform .2s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s,border-color .25s;-webkit-tap-highlight-color:transparent}.row:active{transform:scale(.975)}.row.foc{transform:translateX(4px);box-shadow:0 10px 26px -12px rgba(0,0,0,.45)}.rmain{min-height:48px}.item .det.open{animation:swp .35s cubic-bezier(.2,.7,.2,1)}}
+@media(prefers-reduced-motion:reduce){.row:active,.row.foc{transform:none}}
 </style>
 
 <header class="top" id="top">
@@ -418,7 +423,7 @@ em{font-style:normal;color:var(--mut)}
       <p class="eyebrow">Vamos resolver sua demanda?</p>
       <h2>Escolha o serviço. <em>A gente cuida do design.</em></h2>
       <p class="lead">Para pedir um orçamento ou confirmar a disponibilidade, fale comigo pelo WhatsApp.</p>
-      <div class="cta-row"><a class="btn" id="ctaFinal" href="#" target="_blank" rel="noopener">Falar pelo WhatsApp <span aria-hidden="true">→</span></a><a class="btn ghost" href="#servicos">Ver serviços</a></div>
+      <div class="cta-row"><a class="btn" id="ctaFinal" data-wa="" href="#">Falar pelo WhatsApp <span aria-hidden="true">→</span></a><a class="btn ghost" href="#servicos">Ver serviços</a></div>
       <div class="contact-line"><span>WhatsApp <b>(88) 99987-8583</b></span><span>Instagram <a href="https://instagram.com/railsonnlima" target="_blank" rel="noopener">@railsonnlima <span class="ic" aria-hidden="true">↗</span></a></span></div>
     </div>
     <div class="logo-big"><span class="lg" role="img" aria-label="Railson Lima Design"><i class="ring"></i><i class="core"></i></span></div>
@@ -429,10 +434,8 @@ em{font-style:normal;color:var(--mut)}
 <div class="go" id="go" hidden role="dialog" aria-modal="true" aria-labelledby="goT"><div class="go-in"><span class="lg" aria-hidden="true"><i class="ring"></i><i class="core"></i></span><h2 id="goT">Preparando seu pedido</h2><p id="goSub"></p><ul class="go-list" id="goList"></ul><div class="go-tot" id="goTot" hidden></div><div class="go-bar"><i></i></div><div class="go-act" id="goAct" hidden><a class="btn" id="goLink" href="#" target="_blank" rel="noopener">Abrir o WhatsApp <span aria-hidden="true">→</span></a><button class="btn ghost" id="goBack" type="button">Voltar</button><a class="alt" id="goAlt" href="#" target="_blank" rel="noopener">Não abriu? Usar link alternativo</a></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="sheet" id="sheet" hidden><div class="sheet-bg" id="sheetBg"></div><div class="sheet-card" role="dialog" aria-modal="true" aria-label="Sua seleção"><div class="sheet-h"><b>Sua seleção</b><button id="sheetX" aria-label="Fechar">×</button></div><div id="sheetBody"></div></div></div>
-<div class="mbar" id="mbar"><button class="t" id="mopen" aria-label="Ver seleção"><span id="mcount">0 serviços</span><b id="mtotal">R$ 0</b></button><a class="btn" id="mgo" href="#" target="_blank" rel="noopener">Pedir no WhatsApp <span aria-hidden="true">→</span></a></div>
-
-<script>
-(function(){
+<div class="mbar" id="mbar"><button class="t" id="mopen" aria-label="Ver seleção"><span id="mcount">0 serviços</span><b id="mtotal">R$ 0</b></button><a class="btn" id="mgo" data-wa="" href="#">Pedir no WhatsApp <span aria-hidden="true">→</span></a></div>
+<script>(function(){
 const WA='5588999878583';
 const RES=['Ser encontrado por quem já procura','Ter uma marca que sustenta o preço','Aparecer com constância','Vender melhor para quem já chegou','Lançar sem improviso','Transformar conhecimento em produto'];
 const C=[
@@ -500,7 +503,7 @@ const mob=matchMedia('(max-width:719px)');
 const list=$('list'),svg=$('lines'),grid=$('svgrid');
 let cat=0;const rows={},dets={};
 
-const selSet=new Set();let foc=null;
+const selSet=new Set();let foc=null,pin=null;
 function total(){let t=0,from=false,star=false;selSet.forEach(i=>{const s=S[i];t+=s.price;if(s.flag.startsWith('a partir'))from=true;if(s.flag.includes('*'))star=true});return{t,from,star}}
 function selMsg(ids){
   const ss=ids.map(i=>S[i]);let t=0,from=false;ss.forEach(s=>{t+=s.price;if(s.flag.startsWith('a partir'))from=true});
@@ -517,7 +520,7 @@ function bump(el){if(!el||reduceM.matches)return;el.classList.remove('bump');voi
 function flashRow(id){const r=rows[id];if(!r||reduceM.matches)return;const a=r.querySelector('.add');r.classList.remove('flash');a.classList.remove('pop');void r.offsetWidth;r.classList.add('flash');a.classList.add('pop')}
 function toggleSel(id,foco){
   const was=selSet.has(id);was?selSet.delete(id):selSet.add(id);
-  if(foco&&!mob.matches)foc=id;
+  if(foco&&!mob.matches)foc=pin=id;
   refresh(false);flashRow(id);
   if(!was&&mob.matches)toast('Adicionado: '+S[id].name,'Saiba mais',()=>{foc=id;refresh();setTimeout(()=>dets[id]&&dets[id].scrollIntoView({block:'nearest',behavior:reduceM.matches?'auto':'smooth'}),90)});
   else toast((was?'Removido: ':'Adicionado: ')+S[id].name);
@@ -540,18 +543,18 @@ function detailHTML(s){
 function selHTML(){
   const ids=cur(),tt=total();
   if(!ids.length)return '<div class="sch"><b>Sua seleção</b><span>nenhum</span></div><p class="fine">Use “+ Adicionar” em quantos serviços quiser, de qualquer categoria. Eles seguem juntos para o WhatsApp.</p>'+
-    (foc!==null?'<a class="btn" target="_blank" rel="noopener" data-wa="'+foc+'" href="'+waUrl(selMsg([foc]))+'">Pedir só este pelo WhatsApp <span aria-hidden="true">→</span></a>':'');
+    (foc!==null?'<a class="btn" data-wa="'+foc+'" href="#">Pedir só este pelo WhatsApp <span aria-hidden="true">→</span></a>':'');
   return '<div class="sch"><b>Sua seleção</b><span>'+ids.length+(ids.length>1?' serviços':' serviço')+'</span></div><ul class="sl">'+
     ids.map(i=>'<li><span>'+S[i].name+'</span><span>'+priceTxt(S[i])+'</span><button data-rm="'+i+'" aria-label="Remover '+S[i].name+'">×</button></li>').join('')+'</ul>'+
     '<div class="tot"><span class="fine">Valor de referência</span><b>'+(tt.from?'<small style="font-size:13px;font-weight:400">a partir de </small>':'')+brl(tt.t)+'</b></div>'+
-    '<a class="btn" target="_blank" rel="noopener" data-wa="'+ids.join(',')+'" href="'+waUrl(selMsg(ids))+'">Pedir '+(ids.length>1?ids.length+' serviços':'este serviço')+' pelo WhatsApp <span aria-hidden="true">→</span></a>'+
+    '<a class="btn" data-wa="'+ids.join(',')+'" href="#">Pedir '+(ids.length>1?ids.length+' serviços':'este serviço')+' pelo WhatsApp <span aria-hidden="true">→</span></a>'+
     '<p class="fine">Escopo, revisões e prazo são confirmados no orçamento.'+(tt.star?' *Consultorias têm valor de referência.':'')+'</p>';
 }
 function chips(){
   const box=$('chips');box.innerHTML='';
   C.forEach((c,ci)=>{const n=[...selSet].filter(i=>S[i].cat===ci).length;const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed',ci===cat);
     b.innerHTML=c.n+(n?' <span class="cb">'+n+'</span>':' <small>'+c.i.length+'</small>');
-    b.onclick=()=>{cat=ci;foc=mob.matches?null:S.find(s=>s.cat===ci).id;build();refresh(true);if(mob.matches)setTimeout(()=>list.scrollIntoView({behavior:reduceM.matches?'auto':'smooth',block:'start'}),60)};box.appendChild(b)});
+    b.onclick=()=>{cat=ci;foc=pin=null;build();refresh(true);if(mob.matches)setTimeout(()=>list.scrollIntoView({behavior:reduceM.matches?'auto':'smooth',block:'start'}),60)};box.appendChild(b)});
 }
 const accEls=[];
 function mkItems(ci,box){
@@ -561,7 +564,8 @@ function mkItems(ci,box){
     const it=document.createElement('div');it.className='item';
     const r=document.createElement('div');r.className='row fxg';
     r.innerHTML='<button class="rmain" aria-expanded="false"><span class="nm">'+s.name+'</span><span class="pr">'+priceTxt(s)+'</span><span class="more" aria-hidden="true"></span></button><button class="add" aria-pressed="false" aria-label="Adicionar '+s.name+'"></button><i class="dot"></i>';
-    r.querySelector('.rmain').onclick=()=>{foc=(mob.matches&&foc===s.id)?null:s.id;refresh();if(mob.matches&&foc===s.id)setTimeout(()=>dets[s.id].scrollIntoView({block:'nearest',behavior:reduceM.matches?'auto':'smooth'}),90)};
+    r.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&!mob.matches&&foc!==s.id){foc=s.id;refresh()}});
+    r.querySelector('.rmain').onclick=()=>{foc=(mob.matches&&foc===s.id)?null:s.id;pin=foc;refresh();if(mob.matches&&foc===s.id)setTimeout(()=>dets[s.id].scrollIntoView({block:'nearest',behavior:reduceM.matches?'auto':'smooth'}),90)};
     r.querySelector('.add').onclick=()=>toggleSel(s.id,true);
     const d=document.createElement('div');d.className='detail';
     it.append(r,d);box.appendChild(it);rows[s.id]=r;dets[s.id]=d;
@@ -598,16 +602,16 @@ function refresh(restart){
   S.forEach(s=>{const r=rows[s.id];if(!r)return;const on=selSet.has(s.id),f=foc===s.id;
     r.classList.toggle('on',on);r.classList.toggle('foc',f);
     r.querySelector('.add').setAttribute('aria-pressed',on);r.querySelector('.rmain').setAttribute('aria-expanded',f);
-    dets[s.id].classList.toggle('open',f);dets[s.id].innerHTML=f?detailHTML(s):''});
+    const was=dets[s.id].classList.contains('open');dets[s.id].classList.toggle('open',f);dets[s.id].innerHTML=f?detailHTML(s):'';if(f&&!was&&mob.matches){const pc=dets[s.id].firstElementChild;if(pc){pc.classList.remove('swap');void pc.offsetWidth;pc.classList.add('swap')}if(navigator.vibrate&&!reduceM.matches)try{navigator.vibrate(8)}catch(_){}}});
   const pb=$('pbody');
-  if(foc!==null){const sig=foc+'-'+selSet.has(foc);if(pb._sig!==sig){pb.innerHTML=detailHTML(S[foc]);pb._sig=sig}}
+  if(foc!==null){const sig=foc+'-'+selSet.has(foc);if(pb._sig!==sig){pb.innerHTML=detailHTML(S[foc]);pb._sig=sig;pb.classList.remove('swap');void pb.offsetWidth;pb.classList.add('swap')}}
   else{pb._sig=null;pb.innerHTML='<div class="pc"><p class="eyebrow">Serviço</p><h3>Escolha um serviço ao lado.</h3><p class="tx">O painel mostra o que ele resolve e o valor de referência. Adicione quantos quiser.</p></div>'}
   $('sbody').innerHTML=selHTML();
   const ids=cur(),tt=total();
   $('mcount').textContent=ids.length+(ids.length===1?' serviço':' serviços');$('mtotal').textContent=(tt.from?'a partir de ':'')+brl(tt.t);
   $('mbar').classList.toggle('show',ids.length>0);
-  if(ids.length){$('mgo').href=waUrl(selMsg(ids));$('mgo').setAttribute('data-wa',ids.join(','))}
-  $('ctaFinal').href=ids.length?waUrl(selMsg(ids)):waUrl('Olá, Railson! Gostaria de solicitar um orçamento.');$('ctaFinal').setAttribute('data-wa',ids.join(','));
+  if(ids.length){$('mgo').setAttribute('data-wa',ids.join(','))}
+  $('ctaFinal').setAttribute('data-wa',ids.join(','));
   if(mob.matches&&foc!==null&&restart!==true){const r=rows[foc];if(r&&!r._seen){}}
   const n=ids.length;if(n!==lastN){bump($('mtotal'));bump(document.querySelector('#sbody .sch span'));lastN=n}
   if(!$('sheet').hidden){if(n)renderSheet();else closeSheet()}
@@ -617,28 +621,32 @@ function refresh(restart){
 
 let goTimer=null;
 function goWA(ids){
-  const go=$('go'),msg=ids.length?selMsg(ids):'Olá, Railson! Gostaria de solicitar um orçamento.',url=waDirect(msg),alt=waUrl(msg);
+  const go=$('go'),msg=ids.length?selMsg(ids):'Olá, Railson! Gostaria de solicitar um orçamento.',alt=waUrl(msg);
   let t=0,from=false;ids.forEach(i=>{t+=S[i].price;if(S[i].flag.startsWith('a partir'))from=true});
   $('goSub').textContent=ids.length?'Seu pedido segue para o WhatsApp com os serviços e os valores.':'Abrindo a conversa no WhatsApp.';
   $('goList').innerHTML=ids.map(i=>'<li><span>'+S[i].name+'</span><span>'+priceTxt(S[i])+'</span></li>').join('');
   $('goList').hidden=!ids.length;
   const tot=$('goTot');tot.hidden=!ids.length;tot.innerHTML='<span>Total de referência</span><span>'+(from?'a partir de ':'')+brl(t)+'</span>';
-  $('goT').textContent='Preparando seu pedido';$('goAct').hidden=true;const gl=$('goLink');gl.href=url;if(isMobileDev())gl.removeAttribute('target');else gl.target='_blank';$('goAlt').href=alt;
+  $('goT').textContent='Preparando seu pedido';$('goAct').hidden=true;const gl=$('goLink');gl.href=alt;gl.target='_blank';gl.rel='noopener noreferrer';$('goAlt').href=alt;
   go.classList.remove('run');go.hidden=false;document.body.style.overflow='hidden';
   void go.offsetWidth;requestAnimationFrame(()=>go.classList.add('run'));
   clearTimeout(goTimer);
   goTimer=setTimeout(()=>{
+    let isTop=false;try{isTop=window.top===window}catch(_){}
+    if(isTop){$('goT').textContent='Abrindo o WhatsApp';location.href=alt;return}
     $('goT').textContent='Abrindo o WhatsApp';$('goSub').textContent='Se a conversa não abrir sozinha, toque em “Abrir o WhatsApp”.';
     $('goAct').hidden=false;try{$('goLink').click()}catch(_){}
   },reduce.matches?200:900);
 }
+(()=>{const g=$('svgrid');g&&g.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&!mob.matches&&foc!==pin){foc=pin;refresh()}})})();
+window.addEventListener('pageshow',e=>{if(e.persisted&&!$('go').hidden)closeGo()});
 function closeGo(){clearTimeout(goTimer);$('go').hidden=true;document.body.style.overflow=''}
 $('goBack').onclick=closeGo;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('go').hidden)closeGo()});
 document.addEventListener('click',e=>{
-  const wa=e.target.closest&&e.target.closest('[data-wa]');
-  if(wa&&wa.id!=='goLink'){e.preventDefault();goWA(wa.dataset.wa?wa.dataset.wa.split(',').map(Number):[]);return}
-});
+  const wa=e.target.closest&&e.target.closest('[data-wa],a[href*="wa.me"],a[href*="whatsapp"]');
+  if(wa&&wa.id!=='goLink'&&wa.id!=='goAlt'){e.preventDefault();e.stopImmediatePropagation();goWA(wa.dataset.wa?wa.dataset.wa.split(',').map(Number):[]);return}
+},true);
 document.addEventListener('click',e=>{
   const tg=e.target.closest&&e.target.closest('[data-tog]');
   if(tg){toggleSel(+tg.dataset.tog,false);return}
@@ -680,20 +688,19 @@ window.addEventListener('scroll',()=>anim(60),{passive:true});
 window.addEventListener('resize',()=>anim(200));
 if(window.ResizeObserver)new ResizeObserver(()=>anim(200)).observe(grid);
 document.fonts&&document.fonts.ready.then(()=>anim(300));
-mob.addEventListener&&mob.addEventListener('change',()=>{if(!mob.matches){if(cat===null)cat=0;if(foc===null)foc=S.find(s=>s.cat===cat).id}build();refresh(true)});
+mob.addEventListener&&mob.addEventListener('change',()=>{if(!mob.matches){if(cat===null)cat=0;}build();refresh(true)});
 
 /* páginas, pontos, teclado */
 const pages=[...document.querySelectorAll('.slide')],dots=$('dots'),links=[...document.querySelectorAll('.top nav a')];
 pages.forEach((p,i)=>{const a=document.createElement('a');a.href='#'+p.id;a.setAttribute('aria-label','Página '+(i+1));dots.appendChild(a)});
 const ind=$('navind');let activeLink=null;
 function moveInd(){if(!activeLink){ind.style.opacity=0;return}ind.style.opacity=1;ind.style.left=activeLink.offsetLeft+'px';ind.style.width=activeLink.offsetWidth+'px'}
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const i=pages.indexOf(e.target);[...dots.children].forEach((a,j)=>a.classList.toggle('on',i===j));
-  activeLink=null;links.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)activeLink=a});moveInd()}),{rootMargin:'-45% 0px -50% 0px'});
+let curPg=-1;function syncNav(){const y=innerHeight*.45;let i=0;pages.forEach((p,k)=>{if(p.getBoundingClientRect().top<=y)i=k});if(i===curPg)return;curPg=i;const id=pages[i].id;[...dots.children].forEach((a,j)=>a.classList.toggle('on',i===j));activeLink=null;links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on)activeLink=a});moveInd()}
+window.addEventListener('scroll',syncNav,{passive:true});window.addEventListener('resize',()=>{curPg=-1;syncNav()});syncNav();
 window.addEventListener('resize',moveInd);document.fonts&&document.fonts.ready.then(moveInd);
 const topEl=$('top');let smOn=false;function sm(){const v=scrollY>40;if(v!==smOn){smOn=v;topEl.classList.toggle('sm',v);setTimeout(moveInd,340)}}window.addEventListener('scroll',sm,{passive:true});sm();
 const prog=$('prog');function pg(){const m=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(m>0?Math.min(1,scrollY/m):0)+')'}
 window.addEventListener('scroll',pg,{passive:true});pg();
-pages.forEach(p=>io.observe(p));
 
 /* efeitos imersivos */
 const fine=matchMedia('(hover:hover) and (pointer:fine)'),reduce=matchMedia('(prefers-reduced-motion:reduce)');
@@ -728,8 +735,7 @@ document.addEventListener('pointerdown',e=>{
 },{passive:true});
 ['pointerup','pointercancel'].forEach(n=>document.addEventListener(n,e=>{if(e.pointerType!=='mouse'&&curSl)curSl.classList.remove('lit')},{passive:true}));
 
-foc=mob.matches?null:S.find(s=>s.cat===0).id;build();refresh(true);anim(800);
+foc=null;build();refresh(true);anim(800);
 })();
 </script>
-
 </body></html>
